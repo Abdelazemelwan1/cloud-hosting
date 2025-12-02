@@ -12,11 +12,11 @@ import { NextRequest , NextResponse } from "next/server";
  */
 
 
-export async function GET(_request: NextRequest) {
+export async function GET(request: NextRequest) {
     try {
         const count = await prisma.article.count();
         return NextResponse.json({count} , {status: 200});
-    } catch (_error:unknown) {
+    } catch (error:unknown) {
         return NextResponse.json(
             {message : 'internal server error'} , {status: 500}
         )

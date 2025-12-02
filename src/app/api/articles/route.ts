@@ -21,7 +21,7 @@ export async function GET(request : NextRequest) {
             orderBy: {createdAt : 'desc'}
         }); 
         return NextResponse.json(articles , {status : 200})
-    } catch (_error) {
+    } catch (error) {
         return NextResponse.json(
             {message : "internal server error"} , {status: 500}
         )
@@ -58,7 +58,7 @@ export async function POST(request : NextRequest) {
     })
     // articles.push(newArticle)
     return NextResponse.json(newArticle, {status : 201})
-    } catch (_error) {
+    } catch (error) {
         return NextResponse.json(
             {message : "internal server error"} , {status: 500}
         )

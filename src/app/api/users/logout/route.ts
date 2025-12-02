@@ -7,11 +7,11 @@ import {NextRequest , NextResponse} from 'next/server'
  * @access public 
  */
 
-export function GET(_request:NextRequest) {
+export function GET(request:NextRequest) {
     try {
         cookies().delete("jwtToken");
         return NextResponse.json({message:'logout'},{status:200})
-    } catch (_error) {
+    } catch (error) {
         return NextResponse.json(
             {message: 'internale server error'},
             {status : 500}

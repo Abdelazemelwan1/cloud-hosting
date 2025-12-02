@@ -13,7 +13,7 @@ export function verifyToken(request:NextRequest) : JWTPayload | null {
         const userPayload = jwt.verify(token , privatekey) as JWTPayload;
         return userPayload
         
-    } catch (_error) {
+    } catch (error) {
         return null
     }
 }
@@ -28,7 +28,7 @@ export function verifyTokenForPage(token: string) : JWTPayload | null {
         if (!userPayload) return null; 
         return userPayload
         
-    } catch (_error) {
+    } catch (error) {
         return null
     }
 }

@@ -37,7 +37,7 @@ export async function POST(request:NextRequest) {
             }
         });
         return NextResponse.json(newComment, {status:201});
-    } catch (_error) {
+    } catch (error) {
         return NextResponse.json(
             {message: 'internal server error'} , {status: 500}
         )
@@ -65,7 +65,7 @@ export async function GET(request:NextRequest) {
         const Comments = await prisma.comment.findMany();
         return NextResponse.json(Comments, {status:200});
         
-    } catch (_error) {
+    } catch (error) {
         return NextResponse.json(
             {message: 'internal server error'} , {status: 500}
         )

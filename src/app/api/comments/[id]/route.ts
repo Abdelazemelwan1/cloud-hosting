@@ -33,7 +33,7 @@ export async function PUT(request:NextRequest, {params} : Props) {
             data: {text: body.text}
         })
         return NextResponse.json(updateComment, {status:200})
-    } catch (_error) {
+    } catch (error) {
         return NextResponse.json(
             {message: 'internal server error'} , {status: 500}
         )
@@ -69,7 +69,7 @@ export async function DELETE(request:NextRequest, {params} : Props) {
         return NextResponse.json(
             {message: 'you are not allowed, access denied'} , {status:403}
         )
-    } catch (_error) {
+    } catch (error) {
         return NextResponse.json(
             {message: 'internal server error'} , {status: 500}
         )

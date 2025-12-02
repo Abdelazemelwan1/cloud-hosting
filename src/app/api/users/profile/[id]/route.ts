@@ -48,7 +48,7 @@ export async function DELETE(request: NextRequest, {params} : props){
         {message : 'only user himself can delete his profile, forbidden'} , {status : 403}
     )
 
-    } catch (_error) {
+    } catch (error) {
         return NextResponse.json(
             {message:"internal server error"} , {status : 500}
         )
@@ -85,7 +85,7 @@ export async function GET(request:NextRequest , {params} : props) {
             )
         }
         return NextResponse.json(user, {status : 200});
-    } catch (_error) {
+    } catch (error) {
         return NextResponse.json({message : 'internal server error'} , {status : 500})
     }
 }
@@ -142,9 +142,9 @@ export async function PUT(request:NextRequest , {params} : props) {
                 password:body.password
             }
         })
-        const { _password, ...other} = updatedUser
+        const { password, ...other} = updatedUser
         return NextResponse.json({...other} , {status : 200});
-    } catch (_error) {
+    } catch (error) {
         return NextResponse.json({message : 'internal server error'} , {status : 500})
     }
 }

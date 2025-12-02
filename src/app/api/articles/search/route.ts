@@ -29,7 +29,7 @@ export async function GET(request: NextRequest) {
             articles = await prisma.article.findMany({take:6})
         }
         return NextResponse.json(articles , {status : 200})
-    } catch (_error) {
+    } catch (error) {
         return NextResponse.json(
             {message:'internal server error'} , {status : 500}
         )
