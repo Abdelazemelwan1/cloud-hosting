@@ -7,7 +7,7 @@ import LogoutButton from "./LogoutButton";
 
 
 export default async function Header() {
-  const token = cookies().get("jwtToken")?.value || "";
+  const token = (await cookies()).get("jwtToken")?.value || "";
     const payload = verifyTokenForPage(token)
 
   return (<>

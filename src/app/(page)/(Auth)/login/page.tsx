@@ -2,9 +2,9 @@ import { cookies } from "next/headers";
 import LoginForm from "./LoginForm";
 import { redirect } from "next/navigation";
 
-export default function login() {
+export default async function login() {
 
-const token = cookies().get("jwtToken")?.value;
+const token = (await cookies()).get("jwtToken")?.value;
 if(token) redirect("/")
   
   return (

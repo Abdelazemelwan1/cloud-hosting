@@ -1,8 +1,5 @@
 import { getSingleArticle } from '@/apiCalls/articleApiCall';
-import { verifyTokenForPage } from '@/utils/verifyToken';
 import { Article } from '@prisma/client';
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 import React from 'react'
 import EditArticleFrom from './EditArticleFrom';
 
@@ -11,10 +8,6 @@ interface EditArticlePageProps {
 }
 
 export default async function EditArticlePage({params} : EditArticlePageProps) {
-    const token = (await cookies()).get("jwtToken")?.value;
-    if (!token) redirect("/")
-    const payload = verifyTokenForPage(token);
-    if(payload?.isAdmin === false) redirect("/");
     const article : Article = await getSingleArticle(params.id)
 
   return (

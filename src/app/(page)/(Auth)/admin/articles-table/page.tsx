@@ -1,6 +1,3 @@
-import { verifyTokenForPage } from '@/utils/verifyToken';
-import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 import { ARTICLE_PER_PAGE } from '@/utils/constants';
 import { Article } from '@prisma/client';
 import Link from 'next/link';
@@ -14,11 +11,7 @@ interface AdminArticlesTableProps {
 }
 
 export default async function AdminArticlesTable({searchParams : {pageNumber}} : AdminArticlesTableProps) {
-    const token = (await cookies())?.get("jwtToken")?.value;
-    if (!token) redirect("/")
-      const payload = verifyTokenForPage(token);
-      if(payload?.isAdmin === false) redirect("/")
-      const articles:Article[] = await getArticles(pageNumber);
+    const articles:Article[] = await getArticles(pageNumber);
     const count:number = await prisma.article.count();
     const pages = Math.ceil(count / ARTICLE_PER_PAGE)
 
@@ -29,7 +22,7 @@ export default async function AdminArticlesTable({searchParams : {pageNumber}} :
         <thead className='border-t-2 border-b-2 border-gray-500 lg:text-xl'>
           <tr>
             <th className='p-1 lg:p-2'>title</th>
-            <th className='hidden lg:table-cell'>Created At</th> {/* يجب أن يكون مخفيًا على الشاشات الصغيرة ومرئيًا كـ table-cell على الشاشات الكبيرة */}
+            <th className='hidden lg:table-cell'>Created At</th> 
             <th className='p-1 lg:p-2'>Actions</th>
             <th className='hidden lg:table-cell'></th>
           </tr>

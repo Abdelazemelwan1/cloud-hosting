@@ -2,8 +2,8 @@ import { cookies } from "next/headers";
 import RegisterForm from "./RegisterForm";
 import { redirect } from "next/navigation";
 
-export default function RegisterPage() {
-const token = cookies().get("jwtToken")?.value;
+export default async function RegisterPage() {
+const token = (await cookies()).get("jwtToken")?.value;
 if(token) redirect("/")
   
   return (
